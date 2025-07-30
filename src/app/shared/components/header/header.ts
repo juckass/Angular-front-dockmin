@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
+import { Breadcrumb } from '../breadcrumb/breadcrumb';
+
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [MatIconModule, Breadcrumb],
   standalone: true,
   templateUrl: './header.html',
   styleUrl: './header.scss'

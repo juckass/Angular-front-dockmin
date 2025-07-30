@@ -49,5 +49,6 @@ Asegúrate de tener instalada la versión correcta de Angular CLI y Node.js ante
 
 - Plantilla dashboard elegida: [Creative Tim Tailwind Dashboard](https://www.creative-tim.com/twcomponents/component/dashboard)
 - Guía oficial de integración Tailwind + Angular: [TailwindCSS Angular Guide](https://tailwindcss.com/docs/installation/framework-guides/angular)
+- Biblioteca de iconos Material: [Google Material Icons](https://fonts.google.com/icons)
 
 Consulta la [documentación oficial de Angular](https://angular.io/docs) para obtener más información sobre cómo desarrollar aplicaciones Angular.

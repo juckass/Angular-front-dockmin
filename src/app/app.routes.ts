@@ -22,6 +22,10 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'login',
+        loadComponent: () => import('./modules/auth/login/login')
+    },
+    {
         path:'**',
         redirectTo: 'dashboard',
     }
