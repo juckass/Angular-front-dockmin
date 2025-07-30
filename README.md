@@ -9,7 +9,7 @@ Dentro de la carpeta `app`, crea:
 - `core/` (servicios globales, guards)
 - `shared/` (componentes reutilizables)
 - `modules/` (dashboard, clientes, ambientes, usuarios, roles, docker)
-- `layout/` (sidebar, navbar, footer)
+- `layout/` (sidebar, navbar, footer, header)
 
 Esta estructura te ayudará a organizar tu proyecto Angular de forma profesional y escalable.
 
