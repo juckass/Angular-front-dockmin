@@ -17,41 +17,34 @@
 
     <div class="m-4">
         <ul class="mb-4 flex flex-col gap-1">
-        <li>
-            <a aria-current="page"   routerLink="/dashboard">
-                <button routerLinkActive="bg-gradient-to-tr from-blue-600 to-blue-400 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]" 
-                    class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
-                    <mat-icon aria-hidden="false" aria-label="icon dashboard" fontIcon="dashboard"></mat-icon>
-                <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">dashboard</p>
-                </button>
-            </a>
-        </li>
 
-        <li>
-            <a class="" routerLink='/clientes'>
-            <button routerLinkActive="bg-gradient-to-tr from-blue-600 to-blue-400 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]"
-            class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
-                <mat-icon aria-hidden="false" aria-label="icon factory" fontIcon="factory"></mat-icon>
+            <li *ngFor="let item of sidebarItems">
+                <a aria-current="page"   [routerLink]="item.route">
+                    <button routerLinkActive="bg-gradient-to-tr from-blue-600 to-blue-400 shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]" 
+                        class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
+                        <mat-icon aria-hidden="false" [fontIcon]="item.icon"></mat-icon>
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">{{ item.name }}</p>
+                    </button>
+                </a>
+            </li>
 
-                <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">Clientes</p>
-            </button>
-            </a>
-        </li>
         </ul>
-        <ul class="mb-4 flex flex-col gap-1">
-        <li class="mx-3.5 mt-4 mb-2">
-            <p class="block antialiased font-sans text-sm leading-normal text-white font-black uppercase opacity-75">---</p>
-        </li>
-        
-        <li>
-            <a class="" href="/logout">
-            <button class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
-                <mat-icon aria-hidden="false" aria-label="icon exit_to_app" fontIcon="exit_to_app"></mat-icon>
 
-                <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">Cerrar sesión</p>
-            </button>
-            </a>
-        </li>
+        <ul class="mb-4 flex flex-col gap-1">
+            <li class="mx-3.5 mt-4 mb-2">
+                <p class="block antialiased font-sans text-sm leading-normal text-white font-black uppercase opacity-75">---</p>
+            </li>
+        
+            <li>
+                <a class="" href="/logout">
+                <button class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 rounded-lg text-white hover:bg-white/10 active:bg-white/30 w-full flex items-center gap-4 px-4 capitalize" type="button">
+                    <mat-icon aria-hidden="false" aria-label="icon exit_to_app" fontIcon="exit_to_app"></mat-icon>
+
+                    <p class="block antialiased font-sans text-base leading-relaxed text-inherit font-medium capitalize">Cerrar sesión</p>
+                </button>
+                </a>
+            </li>
+            
         </ul>
     </div>
 </aside>

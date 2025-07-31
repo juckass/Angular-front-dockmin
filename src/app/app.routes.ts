@@ -15,6 +15,22 @@ export const routes: Routes = [
                 loadComponent: () => import('./modules/clientes/clientes')
             },
             {
+                path: 'ambientes',
+                loadComponent: () => import('./modules/ambientes/ambientes')
+            },
+            {
+                path: 'usuarios',
+                loadComponent: () => import('./modules/usuarios/usuarios')
+            },
+            {
+                path: 'roles',
+                loadComponent: () => import('./modules/roles/roles')
+            },
+            {
+                path: 'dockers',
+                loadComponent: () => import('./modules/dockers/dockers')
+            },
+            {
                 path: '',
                 redirectTo: 'dashboard',
                 pathMatch: 'full'
