@@ -1,0 +1,6 @@
+<button type="button"
+  (click)="onClick()"
+  class="middle none font-sans font-bold center transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-1xl py-4 rounded-lg text-white hover:bg-white/10 active:bg-white/30 flex items-center gap-4 px-6 capitalize bg-gradient-to-tr {{ color }} shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85]">
+  <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+  {{ label }}
+</button>

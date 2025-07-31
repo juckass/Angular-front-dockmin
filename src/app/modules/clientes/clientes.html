@@ -1,1 +1,22 @@
-<p>clientes works!</p>
+
+
+
+
+  <div class="flex justify-end mb-4 px-4">
+    <app-action-button
+      [label]="'Agregar Cliente'"
+      [icon]="'add'"
+      (action)="onAddCliente()">
+    </app-action-button>
+  </div>
+
+
+
+  <app-data-table
+    [title]="title"
+    [columns]="columns"
+    [data]="data"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)">
+  </app-data-table>
+
