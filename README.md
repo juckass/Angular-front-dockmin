@@ -2,16 +2,33 @@
 
 Este es un proyecto de ejemplo para demostrar la estructura de un proyecto Angular.
 
-## Estructura inicial recomendada
+## Estructura y stack actual
 
-Dentro de la carpeta `app`, crea:
+El proyecto sigue una arquitectura modular y escalable:
 
-- `core/` (servicios globales, guards)
-- `shared/` (componentes reutilizables)
-- `modules/` (dashboard, clientes, ambientes, usuarios, roles, docker)
+- `core/` (servicios globales, guards, interceptores)
+- `shared/` (componentes reutilizables, botones, modales, pipes, directivas)
+- `modules/` (dashboard, clientes, ambientes, usuarios, roles, docker, etc.)
 - `layout/` (sidebar, navbar, footer, header)
 
-Esta estructura te ayudará a organizar tu proyecto Angular de forma profesional y escalable.
+### Stack y librerías
+- Angular 20 (standalone components, routing, reactive forms)
+- Angular Material (UI, modales, tablas, iconos)
+- TailwindCSS (estilos utilitarios y responsivos)
+- NgRx (gestión de estado global, seguridad, roles y permisos)
+
+### Componentes destacados
+- Tabla reutilizable con Angular Material Table, buscador, paginación y acciones (editar/eliminar)
+- Botón de acción reutilizable (`app-action-button`), configurable por label, icono y color
+- Modal genérico (`app-generic-modal`), permite proyectar cualquier componente (ejemplo: formulario de cliente)
+- Formulario reactivo standalone para CRUD de clientes
+
+### Flujo CRUD moderno
+1. El usuario abre un modal genérico y se proyecta el formulario standalone.
+2. El formulario emite el resultado al cerrar el modal y el padre procesa la acción (guardar, editar, etc.).
+3. Todo el flujo es desacoplado y reutilizable.
+
+Esta estructura y stack permiten aprender Angular moderno, aplicar buenas prácticas y escalar el proyecto fácilmente.
 
 ## Instalación
 

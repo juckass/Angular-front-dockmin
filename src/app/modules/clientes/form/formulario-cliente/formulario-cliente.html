@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field class="w-full">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre">
+  </mat-form-field>
+  <mat-form-field class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Guardar</button>
+</form>
