@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { DataTableComponent } from '../../shared/components/data-table/data-table';
@@ -8,6 +8,9 @@ import { ActionButtonComponent } from '../../shared/components/action-button/act
 
 import { GenericModalComponent } from '../../shared/components/modal/generic-modal/generic-modal';
 import { FormularioClienteComponent } from '../clientes/form/formulario-cliente/formulario-cliente';
+import { ConfirmModalComponent } from '../../shared/components/modal/confirm-modal/confirm-modal';
+
+
 
 @Component({
   selector: 'app-clientes',
@@ -18,8 +21,7 @@ import { FormularioClienteComponent } from '../clientes/form/formulario-cliente/
 })
 export default class Clientes {
 
-  constructor(private dialog: MatDialog) {}
-
+constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
 
   title = 'Clientes';
   columns: DataTableColumn[] = [
@@ -27,18 +29,31 @@ export default class Clientes {
     { key: 'nombre', label: 'Nombre' },
     { key: 'email', label: 'Email' }
   ];
+
   data = DEMO_DATA;
 
   onEdit(row: any) {
     console.log(row);
   }
   onDelete(row: any) {
-    console.log('Eliminando:', row);
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      width: '50%',
+      data: { message: `¿Seguro que deseas eliminar el cliente "${row.nombre}"?` }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Eliminar el registro
+        this.data = this.data.filter(c => c['id'] !== row['id']);
+        this.cdr.detectChanges();
+        console.log('Eliminado:', row);
+      }
+    });
   }
   
   onAddCliente() {
     const dialogRef = this.dialog.open(GenericModalComponent, {
-      width: '400px',
+      //width: '600px',
       data: {
         title: 'Agregar Cliente',
         component: FormularioClienteComponent
@@ -54,8 +69,16 @@ export default class Clientes {
   } 
 
   onSaveCliente(cliente: any) {
-    console.log('Guardar Cliente', cliente);
-    // Aquí tu lógica para guardar el cliente
+    // Calcular el nuevo id correlativo
+    const newId = this.data.length > 0 ? Math.max(...this.data.map(c => c['id'])) + 1 : 1;
+    // Crear el nuevo cliente
+    const nuevoCliente = { id: newId, nombre: cliente.nombre, email: cliente.email };
+    // Agregar al array data
+    this.data = [...this.data, nuevoCliente];
+    this.cdr.detectChanges(); // Forzar la detección de cambios
+    console.log('Cliente agregado:', nuevoCliente);
   }
+
+
 
 }

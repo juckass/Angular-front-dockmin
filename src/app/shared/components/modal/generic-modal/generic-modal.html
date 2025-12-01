@@ -1,6 +1,21 @@
-<div mat-dialog-content>
-  <ng-container *ngComponentOutlet="data.component"></ng-container>
+
+<div class="fixed inset-0 z-50 grid place-content-center bg-black/50 p-6">
+  <div class="w-full max-w-md rounded-lg bg-white p-4 shadow-lg">
+
+    <div class="flex items-start justify-between">
+      <h2 id="modalTitle" class="text-xl font-bold text-gray-900 sm:text-2xl">{{ data.title }}</h2>
+
+      <button type="button" mat-button (click)="close()" class="-me-4 -mt-4 rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600 focus:outline-none" aria-label="Close">
+        <mat-icon aria-hidden="false" aria-label="cancel icon" fontIcon="cancel icon"></mat-icon>
+      </button>
+    </div>
+
+    <div mat-dialog-content>
+      <ng-container *ngComponentOutlet="data.component"></ng-container>
+    </div>
+
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="close()">Cerrar</button>
-</div>
+
+
+

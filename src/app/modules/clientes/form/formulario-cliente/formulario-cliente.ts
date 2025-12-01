@@ -27,4 +27,7 @@ export class FormularioClienteComponent {
       this.dialogRef.close(this.form.value); // Pasa los datos al cerrar
     }
   }
+  close() {
+    this.dialogRef.close();
+  }
 }
