@@ -9,7 +9,7 @@ import { ActionButtonComponent } from '../../shared/components/action-button/act
 import { GenericModalComponent } from '../../shared/components/modal/generic-modal/generic-modal';
 import { FormularioClienteComponent } from '../clientes/form/formulario-cliente/formulario-cliente';
 import { ConfirmModalComponent } from '../../shared/components/modal/confirm-modal/confirm-modal';
-
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -21,7 +21,7 @@ import { ConfirmModalComponent } from '../../shared/components/modal/confirm-mod
 })
 export default class Clientes {
 
-constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
+constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef, private toastr: ToastrService) {}
 
   title = 'Clientes';
   columns: DataTableColumn[] = [
@@ -31,7 +31,7 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
   ];
 
   data = DEMO_DATA;
-
+  
   onEdit(row: any) {
     const dialogRef = this.dialog.open(GenericModalComponent, {
       width: '600px',
@@ -45,6 +45,7 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.onUpdateCliente(row['id'], result);
+        this.toastr.success('Cliente guardado correctamente', 'Éxito');
       }
     });
   }
@@ -59,7 +60,7 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
         // Eliminar el registro
         this.data = this.data.filter(c => c['id'] !== row['id']);
         this.cdr.detectChanges();
-        console.log('Eliminado:', row);
+        this.toastr.success('Cliente eliminado correctamente', 'Éxito');
       }
     });
   }
@@ -78,7 +79,7 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
         this.onSaveCliente(result);
       }
     });
-    console.log('Agregar Cliente');
+    
   } 
 
   onSaveCliente(cliente: any) {
@@ -89,7 +90,7 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
     // Agregar al array data
     this.data = [...this.data, nuevoCliente];
     this.cdr.detectChanges(); // Forzar la detección de cambios
-    console.log('Cliente agregado:', nuevoCliente);
+    this.toastr.success('Cliente guardado correctamente', 'Éxito');
   }
 
   onUpdateCliente(id: number, cliente: any) {
@@ -97,8 +98,7 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
       c['id'] === id ? { ...c, nombre: cliente.nombre, email: cliente.email } : c
     );
     this.cdr.detectChanges();
-    console.log('Cliente editado:', cliente);
+    this.toastr.success('Cliente editado correctamente '+ cliente, 'Éxito');
   }
-
 
 }
