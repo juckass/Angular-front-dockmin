@@ -33,7 +33,20 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
   data = DEMO_DATA;
 
   onEdit(row: any) {
-    console.log(row);
+    const dialogRef = this.dialog.open(GenericModalComponent, {
+      width: '600px',
+      data: {
+        title: 'Editar Cliente',
+        component: FormularioClienteComponent,
+        cliente: row // Pasar el cliente seleccionado
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.onUpdateCliente(row['id'], result);
+      }
+    });
   }
   onDelete(row: any) {
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
@@ -79,6 +92,13 @@ constructor(private dialog: MatDialog, private cdr: ChangeDetectorRef) {}
     console.log('Cliente agregado:', nuevoCliente);
   }
 
+  onUpdateCliente(id: number, cliente: any) {
+    this.data = this.data.map(c =>
+      c['id'] === id ? { ...c, nombre: cliente.nombre, email: cliente.email } : c
+    );
+    this.cdr.detectChanges();
+    console.log('Cliente editado:', cliente);
+  }
 
 
 }
