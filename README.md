@@ -38,25 +38,23 @@ Para instalar las dependencias del proyecto, ejecuta:
 npm install
 ```
 
-## Ejecución
-
-Para ejecutar el proyecto en modo de desarrollo, utiliza el siguiente comando:
-
+## Ejecución en Desarrollo
+Para ejecutar el proyecto en modo de desarrollo (usa `environment.ts` con configuraciones locales):
 ```
 ng serve
 ```
+Abre `http://localhost:4200/`.
 
-Luego, abre tu navegador y dirígete a `http://localhost:4200/`.
-
-## Construcción
-
-Para construir el proyecto para producción, ejecuta:
-
+## Construcción para Producción
+Para construir el proyecto para producción (usa `environment.prod.ts` con configuraciones de producción):
 ```
-ng build --prod
+ng build --configuration production
 ```
+Los archivos generados estarán en `dist/`.
 
-Los archivos generados estarán en la carpeta `dist/`.
+## Despliegue
+- Sube los archivos de `dist/` a tu servidor web.
+- Asegúrate de que `environment.prod.ts` tenga las URLs y configuraciones correctas para producción.
 
 ## Notas
 
@@ -69,3 +67,10 @@ Asegúrate de tener instalada la versión correcta de Angular CLI y Node.js ante
 - Biblioteca de iconos Material: [Google Material Icons](https://fonts.google.com/icons)
 
 Consulta la [documentación oficial de Angular](https://angular.io/docs) para obtener más información sobre cómo desarrollar aplicaciones Angular.
+
+https://stackblitz.com/edit/ngx-toastr?file=app%2Fapp.component.ts
+
+## Configuración
+1. Copia `src/environments/environment.example.ts` a `src/environments/environment.ts`.
+2. Edita `environment.ts` con tus URLs locales.
+3. Para producción, configura `environment.prod.ts` en el servidor.

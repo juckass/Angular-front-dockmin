@@ -47,3 +47,5 @@ copilot_angular_rule.md
 copilot_fase_actual.md 
 ejemplos_maquetacion.md
 copilot_context.md
+src/environments/environment.ts
+src/environments/environment.prod.ts

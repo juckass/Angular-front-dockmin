@@ -39,7 +39,7 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import('./modules/auth/login/login')
+        loadComponent: () => import('./modules/auth/login/login').then(m => m.LoginComponent)
     },
     {
         path:'**',
