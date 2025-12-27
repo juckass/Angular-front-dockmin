@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core'; // Agrega OnInit
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.html',
   styleUrls: ['./login.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit { // Implementa OnInit
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -32,6 +32,15 @@ export class LoginComponent {
   loading$: Observable<boolean> = this.store.select(selectAuthLoading);
   error$: Observable<string | null> = this.store.select(selectAuthError);
   isAuthenticated$: Observable<boolean> = this.store.select(selectIsAuthenticated);
+
+  ngOnInit() {
+    // Suscribirse a isAuthenticated para redirigir
+    this.isAuthenticated$.subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.router.navigate(['/dashboard']); // Redirige cuando se loguea
+      }
+    });
+  }
 
   onSubmit() {
     if (this.loginForm.valid) {

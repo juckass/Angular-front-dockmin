@@ -18,8 +18,13 @@ export interface LoginResponse {
 export interface Usuario {
   id: number;
   email: string;
-  nombreCompleto: string;  // Si no hay nombre, usa email o deja vacío
+  nombreCompleto: string;
   roleId: number;
-  role?: string;  // Agrega si quieres el nombre del rol
-  permisos?: string[];  // Agrega permisos
+  role?: string;
+  permisos?: string[];
+}
+
+export interface RefreshResponse {
+  access_token: string;
+  // refresh_token?: string; // Si lo agrega el backend
 }

@@ -56,9 +56,41 @@ Los archivos generados estarán en `dist/`.
 - Sube los archivos de `dist/` a tu servidor web.
 - Asegúrate de que `environment.prod.ts` tenga las URLs y configuraciones correctas para producción.
 
-## Notas
+## Progreso Actual (Fase 3: Login, Seguridad y Estado Transversal)
 
-Asegúrate de tener instalada la versión correcta de Angular CLI y Node.js antes de ejecutar los comandos anteriores.
+### ✅ Completado Hoy:
+- **Modelos de Autenticación**: Interfaces `LoginRequest`, `LoginResponse`, `Usuario` en `auth.models.ts`.
+- **Servicio de Auth**: `AuthService` con métodos para login, logout, refresh, y decodificación JWT usando `jwt-decode`.
+- **Componente Login**: Formulario reactivo con validaciones, integración con NgRx, manejo de "Recuérdame" (localStorage vs sessionStorage).
+- **NgRx Configurado**:
+  - Actions: `loginStart`, `loginSuccess`, `loginFailure`, `logout`.
+  - Reducer: Manejo del estado de auth (user, isAuthenticated, tokens, loading, error).
+  - Selectors: Para leer estado desde componentes.
+  - Effects: Lógica asíncrona para login (llamada HTTP, decodificación, actualización de estado).
+- **Integración Global**: `provideHttpClient`, `provideStore`, `provideEffects` en `app.config.ts`.
+- **Utilidades JWT**: Función `decodeToken` en `jwt.utils.ts` para extraer info del usuario del token.
+- **Problemas Resueltos**:
+  - CORS: Configurado en backend NestJS.
+  - Zone.js: Instalado y importado en `main.ts`.
+  - Nombres de Campos: Ajustado `access_token` vs `accessToken` en interfaces y código.
+  - Errores de Compilación: Tipos corregidos en effects y templates.
+
+### 🔄 En Progreso:
+- **Pruebas de Login**: Funciona con backend, guarda tokens, actualiza estado NgRx. Faltan pruebas de "Recuérdame" y errores.
+
+### ❌ Pendiente:
+- **Guards**: Crear `AuthGuard` para proteger rutas según autenticación.
+- **Interceptor JWT**: Agregar header `Authorization: Bearer <token>` a todas las requests HTTP.
+- **Logout Completo**: Limpiar estado NgRx, redirigir a login.
+- **Permisos**: Mostrar/ocultar elementos UI según roles/permisos del usuario.
+- **Refresh Token**: Lógica automática para renovar tokens expirados.
+- **Pruebas**: Validar flujo completo (login → dashboard → logout).
+
+### Próximos Pasos:
+1. Implementar `AuthGuard` para rutas protegidas.
+2. Crear interceptor para JWT en headers.
+3. Agregar logout en navbar/sidebar.
+4. Integrar permisos en componentes (ej: ocultar botones según rol).
 
 ## Recursos y plantillas
 

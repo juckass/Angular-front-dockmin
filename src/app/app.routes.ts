@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
 
     {
         path: '',
         loadComponent: () => import('./shared/components/layout/layout'),
+        canActivate: [AuthGuard],
         children: [
             {
                 path: 'dashboard',
@@ -40,6 +42,10 @@ export const routes: Routes = [
     {
         path: 'login',
         loadComponent: () => import('./modules/auth/login/login').then(m => m.LoginComponent)
+    },
+    {
+        path: 'logout',  // Nueva ruta
+        loadComponent: () => import('./modules/auth/logout/logout').then(m => m.LogoutComponent)
     },
     {
         path:'**',

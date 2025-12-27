@@ -10,7 +10,13 @@ export const loginStart = createAction(
 // Action: Login exitoso
 export const loginSuccess = createAction(
   '[Auth] Login Success',
-  props<{ user: Usuario; tokens: { accessToken: string; refreshToken: string } }>()
+  props<{ 
+    user: Usuario; 
+    tokens: { 
+      accessToken: string; 
+      refreshToken: string; 
+    }; 
+  }>()
 );
 
 // Action: Login fallido
@@ -21,3 +27,12 @@ export const loginFailure = createAction(
 
 // Action: Logout
 export const logout = createAction('[Auth] Logout');
+
+// Acción para refresh exitoso (solo actualiza tokens)
+export const refreshTokenSuccess = createAction(
+  '[Auth] Refresh Token Success',
+  props<{ 
+    accessToken: string; 
+    refreshToken?: string;  // Opcional si el backend no lo rota
+  }>()
+);

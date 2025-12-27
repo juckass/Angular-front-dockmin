@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Usuario } from '../model/auth.models';
 import * as AuthActions from '../store/auth.actions';  // Próximo paso
+import { refreshTokenSuccess } from './auth.actions';  // Agrega
 
 // Estado inicial de auth
 export interface AuthState {
@@ -53,5 +54,16 @@ export const authReducer = createReducer(
   // Acción: logout
   on(AuthActions.logout, (state) => ({
     ...initialAuthState  // Resetea todo
+  })),
+
+  on(refreshTokenSuccess, (state, { accessToken, refreshToken }) => ({
+    ...state,
+    tokens: {
+      ...state.tokens,  // Si tokens es null, esto no rompe
+      accessToken,
+      refreshToken: refreshToken || state.tokens?.refreshToken || ''  // Usa ?. para null-safe
+    },
+    loading: false,
+    error: null
   }))
 );
